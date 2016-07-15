@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Foundation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
 
@@ -49,10 +50,49 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             self.mapView.setRegion(region, animated: true)
             
-            self.locationManager.stopUpdatingLocation()
+            
+            //self.locationManager.stopUpdatingLocation()
+            
+            
+            CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
+                
+                if (error != nil) {
+                    print("Reverse geocoder failed with error" + error!.localizedDescription)
+                    return
+                }
+                
+                if placemarks!.count > 0 {
+                    let pm = placemarks![0]
+                    self.displayLocationInfo(pm)
+                } else {
+                    print("Problem with the data received from geocoder")
+                }
+            })
+                
         
         }
+    
+    func displayLocationInfo(placemark: CLPlacemark?) {
+        if let containsPlacemark = placemark {
+            //stop updating location to save battery life
+            //locationManager.stopUpdatingLocation()
+            
+            let locality = (containsPlacemark.locality != nil) ? containsPlacemark.locality : ""
+            let sublocality = (containsPlacemark.subLocality != nil) ? containsPlacemark.subLocality : ""
+            let thoroughfare = (containsPlacemark.thoroughfare != nil) ? containsPlacemark.thoroughfare : ""
+            let subthoroughfare = (containsPlacemark.subThoroughfare != nil) ? containsPlacemark.subThoroughfare : ""
+            
+            let postalCode = (containsPlacemark.postalCode != nil) ? containsPlacemark.postalCode : ""
+            let administrativeArea = (containsPlacemark.administrativeArea != nil) ? containsPlacemark.administrativeArea : ""
+            let country = (containsPlacemark.country != nil) ? containsPlacemark.country : ""
+            
+            //print( locality! + thoroughfare! + subthoroughfare! + sublocality! + postalCode! +  administrativeArea! +  country!)
+            
+            print( subthoroughfare! + " " + thoroughfare! + " " + sublocality! + " " + locality! + " " + postalCode! + " " +  administrativeArea! + " " +  country!)
+        }
         
+    }
+    
         func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
             print("Errors: " + error.localizedDescription)
         }
