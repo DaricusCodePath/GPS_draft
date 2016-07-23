@@ -15,6 +15,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var ScrollView: UIScrollView!
+    
+    @IBOutlet weak var Label: UILabel!
+    
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -32,6 +36,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.locationManager.startUpdatingLocation()
         
         self.mapView.showsUserLocation = true
+        
+        ScrollView.contentSize.height = 1000
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,6 +93,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             let country = (containsPlacemark.country != nil) ? containsPlacemark.country : ""
             
             //print( locality! + thoroughfare! + subthoroughfare! + sublocality! + postalCode! +  administrativeArea! +  country!)
+            let LabelInfo = (subthoroughfare! + " " + thoroughfare! + " " + sublocality! + " " + locality! + " " + postalCode! + " " +  administrativeArea! + " " +  country!)
+            Label.text = LabelInfo
             
             print( subthoroughfare! + " " + thoroughfare! + " " + sublocality! + " " + locality! + " " + postalCode! + " " +  administrativeArea! + " " +  country!)
         }

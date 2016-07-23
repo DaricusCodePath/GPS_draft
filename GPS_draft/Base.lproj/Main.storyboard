@@ -1,42 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Xqg-Da-nfH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Xqg-Da-nfH">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Current Location-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GPS_draft" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="GPS_draft" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aVZ-cu-9Sw"/>
                         <viewControllerLayoutGuide type="bottom" id="KLv-JM-DfT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TWk-Th-h7z">
-                                <rect key="frame" x="0.0" y="64" width="320" height="297"/>
-                            </mapView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w2P-MB-Ncz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1000"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TWk-Th-h7z">
+                                        <rect key="frame" x="0.0" y="63" width="320" height="348"/>
+                                    </mapView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2R-G3-jff">
+                                        <rect key="frame" x="8" y="419" width="304" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KLv-JM-DfT" firstAttribute="top" secondItem="TWk-Th-h7z" secondAttribute="bottom" constant="207" id="0VP-mU-9dO"/>
-                            <constraint firstItem="TWk-Th-h7z" firstAttribute="top" secondItem="aVZ-cu-9Sw" secondAttribute="bottom" id="9iR-Ie-cZK"/>
-                            <constraint firstItem="TWk-Th-h7z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="O0A-Mn-pis"/>
-                            <constraint firstAttribute="trailing" secondItem="TWk-Th-h7z" secondAttribute="trailing" id="sYQ-4r-jVc"/>
+                            <constraint firstItem="w2P-MB-Ncz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mvT-BJ-oq3"/>
+                            <constraint firstItem="w2P-MB-Ncz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qhS-FY-VSp"/>
+                            <constraint firstItem="w2P-MB-Ncz" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="rCP-lQ-AYV"/>
+                            <constraint firstItem="w2P-MB-Ncz" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="rSx-lD-2pZ"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Current Location" id="GbD-0y-uXY"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="1000"/>
                     <connections>
+                        <outlet property="Label" destination="f2R-G3-jff" id="ILt-Yk-nJX"/>
+                        <outlet property="ScrollView" destination="w2P-MB-Ncz" id="V2p-Me-ldt"/>
                         <outlet property="mapView" destination="TWk-Th-h7z" id="fdL-VU-KEi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710" y="527"/>
+            <point key="canvasLocation" x="708" y="527"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bMc-c7-ptw">
