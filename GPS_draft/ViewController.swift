@@ -19,6 +19,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet weak var Label: UILabel!
     
+    @IBOutlet weak var LatLabel: UILabel!
+    
+    @IBOutlet weak var LongLabel: UILabel!
+    
+    
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -53,6 +58,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             let center = CLLocationCoordinate2D(latitude: location!.coordinate.latitude, longitude: location!.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
+            
+            //print(location!.coordinate.latitude)
+            let lat = location!.coordinate.latitude
+            let long = location!.coordinate.longitude
+            
+            LatLabel.text = lat.description
+            LongLabel.text = long.description
+            
             
             self.mapView.setRegion(region, animated: true)
             
@@ -95,6 +108,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             //print( locality! + thoroughfare! + subthoroughfare! + sublocality! + postalCode! +  administrativeArea! +  country!)
             let LabelInfo = (subthoroughfare! + " " + thoroughfare! + " " + sublocality! + " " + locality! + " " + postalCode! + " " +  administrativeArea! + " " +  country!)
             Label.text = LabelInfo
+            //LatLabel.text = location
+            //LongLabel.text = Long
             
             print( subthoroughfare! + " " + thoroughfare! + " " + sublocality! + " " + locality! + " " + postalCode! + " " +  administrativeArea! + " " +  country!)
         }
