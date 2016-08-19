@@ -24,6 +24,37 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var LongLabel: UILabel!
     
     
+    @IBOutlet weak var First_name: UITextField!
+    
+    @IBOutlet weak var Last_name: UITextField!
+    
+    @IBOutlet weak var Email_field: UITextField!
+    
+    @IBOutlet weak var Phone_field: UITextField!
+    
+    @IBOutlet weak var Home_field: UITextField!
+    
+    @IBOutlet weak var Height_field: UITextField!
+    
+    
+    
+    
+    let First = NSUserDefaults.standardUserDefaults()
+    let Last =  NSUserDefaults.standardUserDefaults()
+    
+    let Email = NSUserDefaults.standardUserDefaults()
+    let Phone = NSUserDefaults.standardUserDefaults()
+    
+    let Home =  NSUserDefaults.standardUserDefaults()
+    let Height = NSUserDefaults.standardUserDefaults()
+    
+    let Addr = NSUserDefaults.standardUserDefaults()
+    
+    var Data2 = String()
+    
+    
+    
+    
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -43,7 +74,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.mapView.showsUserLocation = true
         
         ScrollView.contentSize.height = 1000
+        
+        
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -108,6 +143,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             //print( locality! + thoroughfare! + subthoroughfare! + sublocality! + postalCode! +  administrativeArea! +  country!)
             let LabelInfo = (subthoroughfare! + " " + thoroughfare! + " " + sublocality! + " " + locality! + " " + postalCode! + " " +  administrativeArea! + " " +  country!)
             Label.text = LabelInfo
+            
+            Data2 = LabelInfo
             //LatLabel.text = location
             //LongLabel.text = Long
             
@@ -122,8 +159,52 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
         
+    @IBAction func Save_Button(sender: AnyObject) {
+        First.setObject(First_name.text, forKey: "First")
+        
+        Last.setObject(Last_name.text, forKey: "Last")
+        
+        Email.setObject(Email_field.text, forKey: "Email")
+        
+        Phone.setObject(Phone_field.text, forKey: "Phone")
+        
+        Home.setObject(Home_field.text, forKey: "Home")
+        
+        Height.setObject(Height_field.text, forKey: "Height")
+        
+        Addr.setObject(Label.text, forKey: "Addr")
+    }
+        
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let DestViewController : ViewController2 = segue.destinationViewController as! ViewController2
+        
+        DestViewController.Data = Data2
+        
+        var Outdata = First.stringForKey("First")
+        DestViewController.Data1 = Outdata!
+        
+        Outdata = Last.stringForKey("Last")
+        DestViewController.Data2 = Outdata!
         
         
+        
+        Outdata = Email.stringForKey("Email")
+        DestViewController.Data3 = Outdata!
+        
+        Outdata = Phone.stringForKey("Phone")
+        DestViewController.Data4 = Outdata!
+        
+        Outdata = Home.stringForKey("Home")
+        DestViewController.Data5 = Outdata!
+        
+        Outdata = Height.stringForKey("Height")
+        DestViewController.Data6 = Outdata!
+        
+    
+        
+        
+        
+    }
         
         
         
