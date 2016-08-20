@@ -36,6 +36,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet weak var Height_field: UITextField!
     
+    @IBOutlet weak var Hospital_field: UITextField!
     
     
     
@@ -49,6 +50,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let Height = NSUserDefaults.standardUserDefaults()
     
     let Addr = NSUserDefaults.standardUserDefaults()
+    
+    let Hospital = NSUserDefaults.standardUserDefaults()
     
     var Data2 = String()
     
@@ -73,7 +76,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         self.mapView.showsUserLocation = true
         
-        ScrollView.contentSize.height = 1000
+        ScrollView.contentSize.height = 1400
         
         
     }
@@ -173,6 +176,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         Height.setObject(Height_field.text, forKey: "Height")
         
         Addr.setObject(Label.text, forKey: "Addr")
+        
+        Hospital.setObject(Hospital_field.text, forKey: "Hospital")
     }
         
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -199,6 +204,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         Outdata = Height.stringForKey("Height")
         DestViewController.Data6 = Outdata!
+        
+        Outdata = Hospital.stringForKey("Hospital")
+        DestViewController.Data7 = Outdata!
         
     
         
