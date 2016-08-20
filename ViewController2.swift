@@ -24,6 +24,7 @@ class ViewController2: UIViewController {
     
     @IBOutlet weak var Height: UILabel!
     
+    @IBOutlet weak var Height2: UILabel!
     @IBOutlet weak var Hospital: UILabel!
     
     var Data = String()
@@ -34,6 +35,7 @@ class ViewController2: UIViewController {
     var Data5 = String()
     var Data6 = String()
     var Data7 = String()
+    var Data8 = String()
     
     
     
@@ -48,6 +50,7 @@ class ViewController2: UIViewController {
         Home.text = Data5
         Height.text = Data6
         Hospital.text = Data7
+        Height2.text = Data8
         
         
         

@@ -38,6 +38,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet weak var Hospital_field: UITextField!
     
+    @IBOutlet weak var Height_field2: UITextField!
     
     
     let First = NSUserDefaults.standardUserDefaults()
@@ -48,6 +49,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     let Home =  NSUserDefaults.standardUserDefaults()
     let Height = NSUserDefaults.standardUserDefaults()
+    let Height2 = NSUserDefaults.standardUserDefaults()
     
     let Addr = NSUserDefaults.standardUserDefaults()
     
@@ -175,6 +177,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         Height.setObject(Height_field.text, forKey: "Height")
         
+        Height2.setObject(Height_field2.text, forKey: "Height2")
+        
         Addr.setObject(Label.text, forKey: "Addr")
         
         Hospital.setObject(Hospital_field.text, forKey: "Hospital")
@@ -204,6 +208,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         Outdata = Height.stringForKey("Height")
         DestViewController.Data6 = Outdata!
+        
+        Outdata = Height2.stringForKey("Height2")
+        DestViewController.Data8 = Outdata!
         
         Outdata = Hospital.stringForKey("Hospital")
         DestViewController.Data7 = Outdata!
