@@ -71,11 +71,7 @@ class ViewController2: UIViewController {
                 
         self.PressureLabel.text = pressure.description
 
-        })
-       
-            
-            
-            }
+        })}
         else{
             print("Barometer not available on this device")
         }
