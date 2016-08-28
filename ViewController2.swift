@@ -6,12 +6,13 @@
 //  Copyright © 2016 Daricus Duncan. All rights reserved.
 //
 
+
 import UIKit
 import CoreMotion
 
 class ViewController2: UIViewController {
     
-    //lazy var altimeter = CMAltimeter()
+    lazy var altimeter = CMAltimeter()
     
 
     @IBOutlet weak var Addr: UILabel!
@@ -60,24 +61,24 @@ class ViewController2: UIViewController {
         Hospital.text = Data7
         Height2.text = Data8
         
-      //  if(CMAltimeter.isRelativeAltitudeAvailable()){
-           // let altitudedata = CMAltitudeData()
+      if(CMAltimeter.isRelativeAltitudeAvailable()){
+            //let altitudedata = CMAltitudeData()
             
-      //  altimeter.startRelativeAltitudeUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (altitudedata:CMAltitudeData?, error:NSError?) in
-        //print("Hey")
-       // var altitude = altitudedata!.relativeAltitude.floatValue
-       // let pressure = altitudedata!.pressure.floatValue
+        altimeter.startRelativeAltitudeUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (altitudedata:CMAltitudeData?, error:NSError?) in
+      print("Hey")
+       var altitude = altitudedata!.relativeAltitude.floatValue
+        let pressure = altitudedata!.pressure.floatValue
             
-        //altitude = altitude * (3.28084)
+       altitude = altitude * (3.28084)
             
-       // self.AltitudeLabel.text = altitude.description
+        self.AltitudeLabel.text = altitude.description
                 
-       // self.PressureLabel.text = pressure.description
+        self.PressureLabel.text = pressure.description
 
-       // })}
-       // else{
-       //     print("Barometer not available on this device")
-      //  }
+        })}
+        else{
+            print("Barometer not available on this device")
+        }
         
         
         
