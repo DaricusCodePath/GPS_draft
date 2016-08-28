@@ -41,6 +41,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBOutlet weak var Height_field2: UITextField!
     
+    @IBOutlet weak var AltitudeLabel: UILabel!
+    
+    @IBOutlet weak var PressureLabel: UILabel!
+    
+    
+    lazy var altimeter = CMAltimeter()
+    
     
     
     let First = NSUserDefaults.standardUserDefaults()
@@ -81,6 +88,26 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.mapView.showsUserLocation = true
         
         ScrollView.contentSize.height = 1400
+        
+        if(CMAltimeter.isRelativeAltitudeAvailable()){
+       // let altitudedata = CMAltitudeData()
+        
+          altimeter.startRelativeAltitudeUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (altitudedata:CMAltitudeData?, error:NSError?) in
+        print("Hey")
+         var altitude = altitudedata!.relativeAltitude.floatValue
+         let pressure = altitudedata!.pressure.floatValue
+        
+        altitude = altitude * (3.28084)
+        
+         self.AltitudeLabel.text = altitude.description
+        
+         self.PressureLabel.text = pressure.description
+        
+         })}
+         else{
+             print("Barometer not available on this device")
+          }
+        
         
         
     }
