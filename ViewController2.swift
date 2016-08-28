@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import CoreMotion
 
 class ViewController2: UIViewController {
+    
+    lazy var altimeter = CMAltimeter()
+    
 
     @IBOutlet weak var Addr: UILabel!
     
@@ -26,6 +30,10 @@ class ViewController2: UIViewController {
     
     @IBOutlet weak var Height2: UILabel!
     @IBOutlet weak var Hospital: UILabel!
+    
+    @IBOutlet weak var AltitudeLabel: UILabel!
+
+    @IBOutlet weak var PressureLabel: UILabel!
     
     var Data = String()
     var Data1 = String()
@@ -51,6 +59,26 @@ class ViewController2: UIViewController {
         Height.text = Data6
         Hospital.text = Data7
         Height2.text = Data8
+        
+        if(CMAltimeter.isRelativeAltitudeAvailable()){
+           // let altitudedata = CMAltitudeData()
+            
+        altimeter.startRelativeAltitudeUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (altitudedata:CMAltitudeData?, error:NSError?) in
+            print("Hey")
+        let altitude = altitudedata!.relativeAltitude.floatValue
+        let pressure = altitudedata!.pressure.floatValue
+        self.AltitudeLabel.text = altitude.description
+                
+        self.PressureLabel.text = pressure.description
+
+        })
+       
+            
+            
+            }
+        else{
+            print("Barometer not available on this device")
+        }
         
         
         

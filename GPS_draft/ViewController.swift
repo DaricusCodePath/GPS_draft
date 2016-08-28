@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Foundation
+import CoreMotion
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
 
@@ -39,6 +40,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var Hospital_field: UITextField!
     
     @IBOutlet weak var Height_field2: UITextField!
+    
     
     
     let First = NSUserDefaults.standardUserDefaults()
