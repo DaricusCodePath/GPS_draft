@@ -64,9 +64,12 @@ class ViewController2: UIViewController {
            // let altitudedata = CMAltitudeData()
             
         altimeter.startRelativeAltitudeUpdatesToQueue(NSOperationQueue.mainQueue(), withHandler: { (altitudedata:CMAltitudeData?, error:NSError?) in
-            print("Hey")
-        let altitude = altitudedata!.relativeAltitude.floatValue
+        print("Hey")
+        var altitude = altitudedata!.relativeAltitude.floatValue
         let pressure = altitudedata!.pressure.floatValue
+            
+        altitude = altitude * (3.28084)
+            
         self.AltitudeLabel.text = altitude.description
                 
         self.PressureLabel.text = pressure.description
